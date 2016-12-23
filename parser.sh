@@ -36,6 +36,12 @@ year=`echo $date | cut -d'-' -f1`
 hour=`echo $time | cut -d':' -f1`
 min=`echo $time | cut -d':' -f2`
 daytime="am"
+if [[ ${hour:0:1} == "0" ]]; then
+  if [ ${#hour} -eq 2 ]; then
+    hour=${hour:1}
+  fi
+fi
+
 if [ $((hour)) -gt 11 ]; then
   hour=$((hour - 12))
   daytime="pm"
